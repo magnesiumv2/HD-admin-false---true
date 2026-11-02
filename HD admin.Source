@@ -1,0 +1,79 @@
+local PlayerGui = game:GetService("Players").LocalPlayer.PlayerGui
+
+local HDUI = Instance.new("ScreenGui")
+HDUI.Name = "HDadmin"
+HDUI.Parent = PlayerGui
+HDUI.ResetOnSpawn = false
+
+local HD = Instance.new("Frame")
+HD.Name = "UI"
+HD.Parent = HDUI
+HD.Position = UDim2.new(0, 234, 0, -35)
+HD.Size = UDim2.new(0, 350, 0, 380)
+HD.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+
+local HDLabel = Instance.new("TextLabel")
+HDLabel.Name = "Label"
+HDLabel.Parent = HD
+HDLabel.Position = UDim2.new(0, 0, 0, 0)
+HDLabel.Size = UDim2.new(0, 355, 0, 50)
+HDLabel.Text = "HD ADMIN"
+HDLabel.TextSize = 25
+HDLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+HDLabel.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+
+local HDToggle = Instance.new("TextButton")
+HDToggle.Name = "OpenHD"
+HDToggle.Parent = HDUI
+HDToggle.Position = UDim2.new(0.5, -216, 0.5, -212)
+HDToggle.Size = UDim2.new(0, 35, 0, 35)
+HDToggle.Text = "HD"
+HDToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+HDToggle.TextSize = 10
+HDToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HDToggle.MouseButton1Click:Connect(function()
+HD.Visible = true
+end)
+
+local HDToggleT = Instance.new("TextButton")
+HDToggleT.Name = "CloseHD"
+HDToggleT.Parent = HD
+HDToggleT.Position = UDim2.new(0, 280, 0, 0)
+HDToggleT.Size = UDim2.new(0, 35, 0, 35)
+HDToggleT.Text = "X"
+HDToggleT.TextColor3 = Color3.fromRGB(255, 255, 255)
+HDToggleT.TextSize = 10
+HDToggleT.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HDToggleT.MouseButton1Click:Connect(function()
+HD.Visible = false
+end)
+
+local Cmds = Instance.new("ScrollingFrame")
+Cmds.Name = "List"
+Cmds.Parent = HD
+Cmds.Position = UDim2.new(0, 10, 0, 100)
+Cmds.Size = UDim2.new(0, 330, 0, 270)
+Cmds.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+Cmds.BorderSizePixel = 0
+
+local function NCmd(TextLabel)
+local NewCmd = Instance.new("TextLabel")
+NewCmd.Name = "HDCmd"
+NewCmd.Parent = Cmds
+NewCmd.Size = UDim2.new(0, 340, 0, 30)
+NewCmd.Text =TextLabel
+NewCmd.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+NewCmd.TextColor3 = Color3.fromRGB(255, 255, 255)
+NewCmd.TextSize = 15
+return NewCmd
+end
+
+local HDCmdList= Instance.new("UIListLayout")
+HDCmdList.Name = "HDCmdsList"
+HDCmdList.Parent = Cmds
+
+NCmd(";kill")
+NCmd(";punish")
+NCmd(";bring")
+NCmd(";jail")
+NCmd(";shutdown")
