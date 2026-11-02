@@ -466,10 +466,20 @@ end
 
 local HDCmdList= Instance.new("UIListLayout")
 HDCmdList.Name = "HDCmdsList"
-HDCmdList.Parent = NewTab
+HDCmdList.Parent = NTabs
 
-NTab("Cmds >")
-NTab("Settings >")
-NTab("Server >")
-NTab("Moderation >")
-NTab("Info >")
+NTab("Cmds                                           >", function()
+TabCmds()
+end
+NTab("Settings                                       >", function()
+TabSettings()
+end
+NTab("Server                                          >", function()
+TabServer()
+end
+NTab("Moderation                                   >", function()
+TabModeration()
+end
+NTab("Info                                              >", function()
+TabInfo()
+end
