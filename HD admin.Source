@@ -461,6 +461,7 @@ NewTab.Text = TextLabel
 NewTab.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NewTab.TextColor3 = Color3.fromRGB(255, 255, 255)
 NewTab.TextSize = 15
+NewTab.MouseButton1Click:Connect(function(TabAcessing)
 return NewTab
 end
 
