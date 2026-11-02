@@ -479,7 +479,7 @@ TabCmds.BorderSizePixel = 0
 
 NTab("Cmds                                           >", function()
 NTabs.Visible = false
-TabCmds Visible = true
+TabCmds.Visible = true
 end)
 NTab("Settings                                       >", function()
 TabSettings()
