@@ -461,15 +461,15 @@ NewTab.Text = TextLabel
 NewTab.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NewTab.TextColor3 = Color3.fromRGB(255, 255, 255)
 NewTab.TextSize = 15
-return NewCmd
+return NewTab
 end
 
 local HDCmdList= Instance.new("UIListLayout")
 HDCmdList.Name = "HDCmdsList"
-HDCmdList.Parent = Cmds
+HDCmdList.Parent = NewTab
 
 NTab("Cmds >")
 NTab("Settings >")
 NTab("Server >")
-NTab("Moderation                                           >")
-NTab("Info                                              >")
+NTab("Moderation >")
+NTab("Info >")
