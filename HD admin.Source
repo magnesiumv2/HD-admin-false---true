@@ -444,23 +444,23 @@ HDToggleT.MouseButton1Click:Connect(function()
 HD.Visible = false
 end)
 
-local Cmds = Instance.new("ScrollingFrame")
-Cmds.Name = "List"
-Cmds.Parent = HD
-Cmds.Position = UDim2.new(0, 10, 0, 100)
-Cmds.Size = UDim2.new(0, 330, 0, 270)
-Cmds.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
-Cmds.BorderSizePixel = 0
+local NTabs = Instance.new("ScrollingFrame")
+NTabs.Name = "List"
+NTabs.Parent = HD
+NTabs.Position = UDim2.new(0, 10, 0, 100)
+NTabs.Size = UDim2.new(0, 330, 0, 270)
+NTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+NTabs.BorderSizePixel = 0
 
-local function NCmd(TextLabel)
-local NewCmd = Instance.new("TextLabel")
-NewCmd.Name = "HDCmd"
-NewCmd.Parent = Cmds
-NewCmd.Size = UDim2.new(0, 340, 0, 30)
-NewCmd.Text =TextLabel
-NewCmd.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
-NewCmd.TextColor3 = Color3.fromRGB(255, 255, 255)
-NewCmd.TextSize = 15
+local function NTab(TextLabel)
+local NewTab = Instance.new("TextButton")
+NewTab.Name = "HDTab"
+NewTab.Parent = NTabs
+NewTab.Size = UDim2.new(0, 340, 0, 30)
+NewTab.Text = TextLabel
+NewTab.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+NewTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+NewTab.TextSize = 15
 return NewCmd
 end
 
@@ -468,8 +468,8 @@ local HDCmdList= Instance.new("UIListLayout")
 HDCmdList.Name = "HDCmdsList"
 HDCmdList.Parent = Cmds
 
-NCmd(";kill")
-NCmd(";punish")
-NCmd(";bring")
-NCmd(";jail")
-NCmd(";shutdown")
+NTab("Cmds >")
+NTab("Settings >")
+NTab("Server >")
+NTab("Moderation                                           >")
+NTab("Info                                              >")
