@@ -452,7 +452,7 @@ NTabs.Size = UDim2.new(0, 330, 0, 270)
 NTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NTabs.BorderSizePixel = 0
 
-local function NTab(TextLabel)
+local function NTab(TextLabel, TabAcessing)
 local NewTab = Instance.new("TextButton")
 NewTab.Name = "HDTab"
 NewTab.Parent = NTabs
@@ -482,14 +482,14 @@ NTabs.Visible = false
 TabCmds.Visible = true
 end)
 NTab("Settings                                       >", function()
-TabSettings()
+
 end)
 NTab("Server                                          >", function()
-TabServer()
+
 end)
 NTab("Moderation                                   >", function()
-TabModeration()
+
 end)
 NTab("Info                                              >", function()
-TabInfo()
+
 end)
