@@ -409,7 +409,7 @@ HDLabel.Name = "Label"
 HDLabel.Parent = HD
 HDLabel.Position = UDim2.new(0, 0, 0, 0)
 HDLabel.Size = UDim2.new(0, 355, 0, 50)
-HDLabel.Text = "HD ADMIN"
+HDLabel.Text = "HD ADMIN: Cmds."
 HDLabel.TextSize = 25
 HDLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 HDLabel.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
@@ -426,6 +426,10 @@ HDToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HDToggle.MouseButton1Click:Connect(function()
 HD.Visible = true
 end)
+
+local HDStyle = Instance.new("UICorner")
+HDStyle.Name = "HDStyle"
+HDStyle.Parent = HDToggle
 
 local HDToggleT = Instance.new("TextButton")
 HDToggleT.Name = "CloseHD"
