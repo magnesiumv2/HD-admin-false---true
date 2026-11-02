@@ -450,6 +450,7 @@ NTabs.Parent = HD
 NTabs.Position = UDim2.new(0, 10, 0, 100)
 NTabs.Size = UDim2.new(0, 330, 0, 270)
 NTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+NTab.ScrollBarThickness = 0
 NTabs.BorderSizePixel = 0
 
 local function NTab(TextLabel, TabAcessing)
@@ -476,6 +477,7 @@ TabCmds.Visible = false
 TabCmds.Position = UDim2.new(0, 10, 0, 50)
 TabCmds.Size = UDim2.new(0, 330, 0, 320)
 TabCmds.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+TabCmds.ScrollBarThickness = 0
 TabCmds.BorderSizePixel = 0
 
 local function NCmd(Cmd)
