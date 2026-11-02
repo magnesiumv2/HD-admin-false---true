@@ -445,7 +445,7 @@ HD.Visible = false
 end)
 
 local NTabs = Instance.new("ScrollingFrame")
-NTabs.Name = "List"
+NTabs.Name = "Tabs"
 NTabs.Parent = HD
 NTabs.Position = UDim2.new(0, 10, 0, 100)
 NTabs.Size = UDim2.new(0, 330, 0, 270)
@@ -468,18 +468,28 @@ local HDCmdList= Instance.new("UIListLayout")
 HDCmdList.Name = "HDCmdsList"
 HDCmdList.Parent = NTabs
 
+local TabCmds = Instance.new("ScrollingFrame")
+TabCmds.Name = "Cmds"
+TabCmds.Parent = HD
+TabCmds.Visible = false
+TabCmds.Position = UDim2.new(0, 10, 0, 100)
+TabCmds.Size = UDim2.new(0, 330, 0, 270)
+TabCmds.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+TabCmds.BorderSizePixel = 0
+
 NTab("Cmds                                           >", function()
-TabCmds()
-end
+NTabs.Visible = false
+TabCmds Visible = true
+end)
 NTab("Settings                                       >", function()
 TabSettings()
-end
+end)
 NTab("Server                                          >", function()
 TabServer()
-end
+end)
 NTab("Moderation                                   >", function()
 TabModeration()
-end
+end)
 NTab("Info                                              >", function()
 TabInfo()
-end
+end)
