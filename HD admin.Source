@@ -503,6 +503,10 @@ NTabs.Visible = true
 TabCmds.Visible = false
 end)
 
+local CmdList = Instance.new("UIListLayout")
+CmdList.Name = "HDCmdList"
+CmdList.Parent = TabCmds
+
 NTab("Cmds                                           >", function()
 NTabs.Visible = false
 TabCmds.Visible = true
