@@ -498,7 +498,10 @@ ReturnTabs.Text = "<"
 ReturnTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 ReturnTabs.TextColor3 = Color3.fromRGB(255, 255, 255)
 ReturnTabs.TextSize = 15
-
+ReturnTabs.MouseButton1Click:Connect(function()
+NTabs.Visible = true
+TabCmds.Visible = false
+end)
 
 NTab("Cmds                                           >", function()
 NTabs.Visible = false
@@ -519,5 +522,5 @@ end)
 NCmd(";kill [Player]")
 NCmd(";punish [Player]")
 NCmd(";bring [Player]")
-NCmd(";jail [Player"]")
+NCmd(";jail [Player]")
 NCmd(";shutdown")
