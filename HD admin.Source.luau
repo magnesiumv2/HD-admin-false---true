@@ -489,7 +489,6 @@ NewCmd.Size = UDim2.new(0, 340, 0, 30)
 NewCmd.Text = Cmd
 NewCmd.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NewCmd.TextColor3 = Color3.fromRGB(255, 255, 255)
-NewCmd.Layout0rder = 1
 NewCmd.TextSize = 15
 return NewCmd
 end
