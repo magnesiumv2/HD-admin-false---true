@@ -409,7 +409,7 @@ HDLabel.Name = "Label"
 HDLabel.Parent = HD
 HDLabel.Position = UDim2.new(0, 0, 0, 0)
 HDLabel.Size = UDim2.new(0, 355, 0, 50)
-HDLabel.Text = "HD ADMIN: Cmds."
+HDLabel.Text = "HD ADMIN"
 HDLabel.TextSize = 25
 HDLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 HDLabel.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
@@ -493,7 +493,7 @@ return NewCmd
 end
 
 local ReturnTabs = Instance.new("TextButton")
-ReturnTabs.Name = "HDCmd"
+ReturnTabs.Name = "Return"
 ReturnTabs.Parent =TabCmds
 ReturnTabs.Size = UDim2.new(0, 340, 0, 30)
 ReturnTabs.Text = "<"
@@ -509,12 +509,54 @@ local CmdList = Instance.new("UIListLayout")
 CmdList.Name = "HDCmdList"
 CmdList.Parent = TabCmds
 
+local TabSettings = Instance.new("ScrollingFrame")
+TabSettings.Name = "Settings"
+TabSettings.Parent = HD
+TabSettings.Visible = false
+TabSettings.Position = UDim2.new(0, 10, 0, 50)
+TabSettings.Size = UDim2.new(0, 330, 0, 320)
+TabSettings.BackgroundColor3 =Color3.fromRGB(80, 0, 0)
+TabSettings.ScrollBarThickness = 0
+TabSettings.BorderSize = 0
+
+local Settings = Instance.new("UIListLayout")
+Settings.Name = "HDSettings"
+Settings.Parent = TabSettings
+
+local function NSetting(Setting, TabAcessingS)
+local NewSetting = Instance.new("TextButton")
+NewSetting.Name = "HDSetting"
+NewSetting.Parent = TabSetting
+NewSetting.Size = UDim2.new(0, 340, 0, 30)
+NewSetting.Text = Setting
+NewSetting.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+NewSetting.TextSize = 15
+NewSetting.MouseButton1Click:Connect(TabAcessingS)
+return NewSetting
+end
+
+local ReturnTabs1 = Instance.new("TextButton")
+ReturnTabs1.Name = "Return"
+ReturnTabs1Parent = TabSettings
+ReturnTabs1.Size = UDim2.new(0, 330, 0, 30)
+ReturnTabs1.Text = "<"
+ReturnTabs1.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
+ReturnTabs1.TextColor3 = Color3.fromRGB(255 255, 255)
+ReturnTabs1.TextSize = 15
+ReturnTabs1.MouseButton1Click:Connect(function()
+NTabs.Visible = true
+TabSettings.Visible = false
+TabCmds.Visible = false
+end)
+
 NTab("Cmds                                           >", function()
 NTabs.Visible = false
 TabCmds.Visible = true
 end)
 NTab("Settings                                       >", function()
-
+TabCmds.Visible = false
+NTabs.Visible = false
+TabSettings.Visible = true
 end)
 NTab("Server                                          >", function()
 
@@ -530,3 +572,7 @@ NCmd(";punish [Player]")
 NCmd(";bring [Player]")
 NCmd(";jail [Player]")
 NCmd(";shutdown")
+
+NSetting("Theme:", function()
+
+end)
