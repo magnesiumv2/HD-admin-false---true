@@ -551,23 +551,24 @@ TabSettings.Visible = false
 TabCmds.Visible = false
 end)
 
-NTab("Cmds                                           >", function()
+NTab("ABOUT                                             >", function()
+
+end)
+
+NTab("COMMANDS                                           >", function()
 NTabs.Visible = false
 TabCmds.Visible = true
 end)
-NTab("Settings                                       >", function()
+NTab("SPECIAL                                          >", function()
+
+end)
+NTab("ADMINS                                   >", function()
+
+end)
+NTab("SETTINGS                                       >", function()
 TabCmds.Visible = false
 NTabs.Visible = false
 TabSettings.Visible = true
-end)
-NTab("Server                                          >", function()
-
-end)
-NTab("Moderation                                   >", function()
-
-end)
-NTab("Info                                              >", function()
-
 end)
 NCmd(";kill [Player]")
 NCmd(";punish [Player]")
