@@ -502,7 +502,7 @@ ReturnTabs.Text = "<"
 ReturnTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 ReturnTabs.TextColor3 = Color3.fromRGB(255, 255, 255)
 ReturnTabs.TextSize = 15
-ReturnTabs.Layout0rder = 0
+ReturnTabs.LayoutOrder = 0
 ReturnTabs.MouseButton1Click:Connect(function()
 NTabs.Visible = true
 TabCmds.Visible = false
@@ -534,7 +534,7 @@ NewSetting.Size = UDim2.new(0, 340, 0, 30)
 NewSetting.Text = Setting
 NewSetting.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 NewSetting.TextSize = 15
-NewSertung.Layout0rder = 1
+NewSertung.LayoutOrder = 1
 NewSetting.MouseButton1Click:Connect(TabAcessingS)
 return NewSetting
 end
