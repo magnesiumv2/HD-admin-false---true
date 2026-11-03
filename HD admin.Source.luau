@@ -1,3 +1,88 @@
+local AlvosPersistentes = {}
+
+local function executarPersistentPunish(nomeDigitado)
+    if nomeDigitado == "" then return end
+    local Players = game:GetService("Players")
+    local WorkspaceCom = workspace:FindFirstChild("WorkspaceCom")
+    local targetPlayer = nil
+    for _, player in pairs(Players:GetPlayers()) do
+        if string.find(string.lower(player.Name), string.lower(nomeDigitado)) == 1 or string.find(string.lower(player.DisplayName), string.lower(nomeDigitado)) == 1 then
+            targetPlayer = player
+            break
+        end
+    end
+    if targetPlayer then
+        local trafficCones = WorkspaceCom and WorkspaceCom:FindFirstChild("001_TrafficCones")
+        if not trafficCones then return end
+        if AlvosPersistentes[targetPlayer.UserId] then return end
+        AlvosPersistentes[targetPlayer.UserId] = true
+        task.spawn(function()
+            while targetPlayer and targetPlayer.Parent == Players and AlvosPersistentes[targetPlayer.UserId] do
+                local character = targetPlayer.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    local targetHRP = character.HumanoidRootPart
+                    local humanoid = character:FindFirstChildOfClass("Humanoid")
+                    if humanoid and humanoid.Health > 0 then
+                        local destinoPunishCFrame = targetHRP.CFrame
+                        if humanoid.Sit or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat") or humanoid.SeatPart then
+                            destinoPunishCFrame = CFrame.new(99999999999999, -501, -9999999999999999)
+                            local cadeiraFisica = humanoid.SeatPart or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat")
+                            if cadeiraFisica and cadeiraFisica:IsA("BasePart") then
+                                pcall(function()
+                                    if cadeiraFisica.Anchored then
+                                        cadeiraFisica.Anchored = false
+                                    end
+                                pcall)
+                            end
+                        else
+                            local pernaDireita = character:FindFirstChild("RightLeg") or character:FindFirstChild("RightLowerLeg") or character:FindFirstChild("Right Leg")
+                            if pernaDireita and pernaDireita:IsA("BasePart") then
+                                destinoPunishCFrame = pernaDireita.CFrame
+                            end
+                        end
+                        local props = trafficCones:GetChildren()
+                        if #props > 0 then
+                            for _, prop in pairs(props) do
+                                if not AlvosPersistentes[targetPlayer.UserId] then break end
+                                local setCFrameRemote = prop:FindFirstChild("SetCurrentCFrame")
+                                if setCFrameRemote and setCFrameRemote:IsA("RemoteFunction") then
+                                    task.spawn(function()
+                                        pcall(function()
+                                            setCFrameRemote:InvokeServer(destinoPunishCFrame)
+                                        end)
+                                    end)
+                                end
+                            end
+                        end
+                    end
+                end
+                task.wait(0.1) 
+            end
+        end)
+    end
+end
+
+local function executarUnpersistentPunish(nomeDigitado)
+    if nomeDigitado == "" then return end
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+        if string.find(string.lower(player.Name), string.lower(nomeDigitado)) == 1 or string.find(string.lower(player.DisplayName), string.lower(nomeDigitado)) == 1 then
+            if AlvosPersistentes[player.UserId] then
+                AlvosPersistentes[player.UserId] = nil
+                break
+            end
+        end
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(function(message)
+    local msgLower = string.lower(message)
+    if string.sub(msgLower, 1, 18) == ";persistentpunish " then
+        executarPersistentPunish(string.sub(message, 19))
+    elseif string.sub(msgLower, 1, 20) == ";unpersistentpunish " then
+        executarUnpersistentPunish(string.sub(message, 21))
+    end
+end)
+
 local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 
@@ -575,7 +660,8 @@ NCmd(";punish [Player]")
 NCmd(";bring [Player]")
 NCmd(";jail [Player]")
 NCmd(";shutdown")
-
+NCmd(";persistentpunish")
+NCmd(";unpersistentpunish")
 NSetting("Theme:", function()
 
 end)
