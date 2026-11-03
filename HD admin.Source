@@ -452,6 +452,7 @@ NTabs.Size = UDim2.new(0, 330, 0, 270)
 NTabs.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NTabs.ScrollBarThickness = 0
 NTabs.BorderSizePixel = 0
+NTabs.Visible = true
 
 local function NTab(TextLabel, TabAcessing)
 local NewTab = Instance.new("TextButton")
