@@ -534,7 +534,7 @@ NewSetting.Size = UDim2.new(0, 340, 0, 30)
 NewSetting.Text = Setting
 NewSetting.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 NewSetting.TextSize = 15
-NewSertung.LayoutOrder = 1
+NewSetting.LayoutOrder = 1
 NewSetting.MouseButton1Click:Connect(TabAcessingS)
 return NewSetting
 end
