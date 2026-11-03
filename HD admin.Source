@@ -537,11 +537,11 @@ end
 
 local ReturnTabs1 = Instance.new("TextButton")
 ReturnTabs1.Name = "Return"
-ReturnTabs1Parent = TabSettings
+ReturnTabs1.Parent = TabSettings
 ReturnTabs1.Size = UDim2.new(0, 330, 0, 30)
 ReturnTabs1.Text = "<"
 ReturnTabs1.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
-ReturnTabs1.TextColor3 = Color3.fromRGB(255 255, 255)
+ReturnTabs1.TextColor3 = Color3.fromRGB(255, 255, 255)
 ReturnTabs1.TextSize = 15
 ReturnTabs1.MouseButton1Click:Connect(function()
 NTabs.Visible = true
