@@ -526,7 +526,7 @@ Settings.Parent = TabSettings
 local function NSetting(Setting, TabAcessingS)
 local NewSetting = Instance.new("TextButton")
 NewSetting.Name = "HDSetting"
-NewSetting.Parent = TabSetting
+NewSetting.Parent = TabSettings
 NewSetting.Size = UDim2.new(0, 340, 0, 30)
 NewSetting.Text = Setting
 NewSetting.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
