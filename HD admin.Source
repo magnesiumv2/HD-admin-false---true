@@ -518,7 +518,7 @@ TabSettings.Position = UDim2.new(0, 10, 0, 50)
 TabSettings.Size = UDim2.new(0, 330, 0, 320)
 TabSettings.BackgroundColor3 =Color3.fromRGB(80, 0, 0)
 TabSettings.ScrollBarThickness = 0
-TabSettings.BorderSize = 0
+TabSettings.BorderSizePixel = 0
 
 local Settings = Instance.new("UIListLayout")
 Settings.Name = "HDSettings"
