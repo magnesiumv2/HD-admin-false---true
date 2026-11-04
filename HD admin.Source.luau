@@ -1,3 +1,4 @@
+_G.10935287910110991HDadminFalseTrue = [[
 local AlvosPersistentes = {}
 
 local function executarPersistentPunish(nomeDigitado)
@@ -665,3 +666,5 @@ NCmd(";unpersistentpunish [Player] or nil Player")
 NSetting("Theme:", function()
 
 end)
+return true
+]]
