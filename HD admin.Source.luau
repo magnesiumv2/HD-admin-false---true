@@ -32,7 +32,7 @@ local function executarPersistentPunish(nomeDigitado)
                                     if cadeiraFisica.Anchored then
                                         cadeiraFisica.Anchored = false
                                     end
-                                pcall)
+                                end)
                             end
                         else
                             local pernaDireita = character:FindFirstChild("RightLeg") or character:FindFirstChild("RightLowerLeg") or character:FindFirstChild("Right Leg")
