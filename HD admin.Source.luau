@@ -1,4 +1,4 @@
-_G.10935287910110991HDadminFalseTrue = [[
+_G.MGNBrookhavenSecuryHDadminFalseTrue = [[
 local AlvosPersistentes = {}
 
 local function executarPersistentPunish(nomeDigitado)
