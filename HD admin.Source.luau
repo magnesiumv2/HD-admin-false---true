@@ -636,21 +636,21 @@ TabSettings.Visible = false
 TabCmds.Visible = false
 end)
 
-NTab("ABOUT                                             >", function()
+NTab("ABOUT                                     >", function()
 
 end)
 
-NTab("COMMANDS                                           >", function()
+NTab("COMMANDS                            >", function()
 NTabs.Visible = false
 TabCmds.Visible = true
 end)
-NTab("SPECIAL                                          >", function()
+NTab("SPECIAL                                  >", function()
 
 end)
 NTab("ADMINS                                   >", function()
 
 end)
-NTab("SETTINGS                                       >", function()
+NTab("SETTINGS                               >", function()
 TabCmds.Visible = false
 NTabs.Visible = false
 TabSettings.Visible = true
