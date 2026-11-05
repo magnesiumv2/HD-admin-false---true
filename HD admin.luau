@@ -1,7 +1,7 @@
 local PlayerGui = game:GetService("Players").LocalPlayer.PlayerGui
 
 local HDUI = Instance.new("ScreenGui")
-HDUI.Name = "HDadmin"
+HDUI.Name = "MGAdmin"
 HDUI.Parent = PlayerGui
 HDUI.ResetOnSpawn = false
 
@@ -17,13 +17,13 @@ HDLabel.Name = "Label"
 HDLabel.Parent = HD
 HDLabel.Position = UDim2.new(0, 0, 0, 0)
 HDLabel.Size = UDim2.new(0, 355, 0, 50)
-HDLabel.Text = "HD ADMIN"
+HDLabel.Text = "MG ADMIN"
 HDLabel.TextSize = 25
 HDLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 HDLabel.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 
 local HDToggle = Instance.new("TextButton")
-HDToggle.Name = "OpenHD"
+HDToggle.Name = "OpenMG"
 HDToggle.Parent = HDUI
 HDToggle.Position = UDim2.new(0.5, -216, 0.5, -212)
 HDToggle.Size = UDim2.new(0, 35, 0, 35)
@@ -36,7 +36,7 @@ HD.Visible = true
 end)
 
 local HDStyle = Instance.new("UICorner")
-HDStyle.Name = "HDStyle"
+HDStyle.Name = "MGStyle"
 HDStyle.Parent = HDToggle
 
 local HDToggleT = Instance.new("TextButton")
@@ -64,7 +64,7 @@ NTabs.Visible = true
 
 local function NTab(TextLabel, TabAcessing)
 local NewTab = Instance.new("TextButton")
-NewTab.Name = "HDTab"
+NewTab.Name = "MGTab"
 NewTab.Parent = NTabs
 NewTab.Size = UDim2.new(0, 340, 0, 30)
 NewTab.Text = TextLabel
@@ -91,13 +91,12 @@ TabCmds.BorderSizePixel = 0
 
 local function NCmd(Cmd)
 local NewCmd = Instance.new("TextLabel")
-NewCmd.Name = "HDCmd"
+NewCmd.Name = "MGCmd"
 NewCmd.Parent =TabCmds
 NewCmd.Size = UDim2.new(0, 340, 0, 30)
 NewCmd.Text = Cmd
 NewCmd.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 NewCmd.TextColor3 = Color3.fromRGB(255, 255, 255)
-NewCmd.Layout0rder = 1
 NewCmd.TextSize = 15
 return NewCmd
 end
@@ -117,7 +116,7 @@ TabCmds.Visible = false
 end)
 
 local CmdList = Instance.new("UIListLayout")
-CmdList.Name = "HDCmdList"
+CmdList.Name = "MGCmdList"
 CmdList.Parent = TabCmds
 
 local TabSettings = Instance.new("ScrollingFrame")
@@ -142,7 +141,6 @@ NewSetting.Size = UDim2.new(0, 340, 0, 30)
 NewSetting.Text = Setting
 NewSetting.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 NewSetting.TextSize = 15
-NewSertung.LayoutOrder = 1
 NewSetting.MouseButton1Click:Connect(TabAcessingS)
 return NewSetting
 end
@@ -155,37 +153,37 @@ ReturnTabs1.Text = "<"
 ReturnTabs1.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
 ReturnTabs1.TextColor3 = Color3.fromRGB(255, 255, 255)
 ReturnTabs1.TextSize = 15
-ReturnTabs1.Layout0rder = 0
 ReturnTabs1.MouseButton1Click:Connect(function()
 NTabs.Visible = true
 TabSettings.Visible = false
 TabCmds.Visible = false
 end)
 
-NTab("Cmds                                           >", function()
+NTab("ABOUT                                     >", function()
+
+end)
+
+NTab("COMMANDS                            >", function()
 NTabs.Visible = false
 TabCmds.Visible = true
 end)
-NTab("Settings                                       >", function()
+NTab("SPECIAL                                  >", function()
+
+end)
+NTab("ADMINS                                   >", function()
+
+end)
+NTab("SETTINGS                               >", function()
 TabCmds.Visible = false
 NTabs.Visible = false
 TabSettings.Visible = true
 end)
-NTab("Server                                          >", function()
-
-end)
-NTab("Moderation                                   >", function()
-
-end)
-NTab("Info                                              >", function()
-
-end)
 NCmd(";kill [Player]")
 NCmd(";punish [Player]")
 NCmd(";bring [Player]")
+NCmd(";kick [Player]")
 NCmd(";jail [Player]")
 NCmd(";shutdown")
-
 NSetting("Theme:", function()
 
 end)
