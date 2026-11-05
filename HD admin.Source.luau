@@ -1,4 +1,3 @@
-_G.MGNBrookhavenSecuryHDadminFalseTrue = [[
 local AlvosPersistentes = {}
 
 local function executarPersistentPunish(nomeDigitado)
@@ -662,9 +661,7 @@ NCmd(";bring [Player]")
 NCmd(";jail [Player]")
 NCmd(";shutdown")
 NCmd(";persistentpunish [Player]")
-NCmd(";unpersistentpunish [Player] or nil Player")
+NCmd(";unpersistentpunish [Player] or No Player")
 NSetting("Theme:", function()
 
 end)
-return true
-]]
