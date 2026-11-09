@@ -844,7 +844,7 @@ About.Parent = ABOUT2
 
 local ReturnTabs3 = Instance.new("TextButton")
 ReturnTabs3.Name = "Return"
-ReturnTabs3.Parent = ABOUT
+ReturnTabs3.Parent = ABOUT2
 ReturnTabs3.Size = UDim2.new(0, 330, 0, 30)
 ReturnTabs3.Text = "<"
 ReturnTabs3.BackgroundColor3 = Color3.fromRGB(80, 0, 0)
