@@ -876,7 +876,7 @@ TabCmds.Visible = false
 NTabs.Visible = false
 TabSettings.Visible = false
 ADMINS.Visible = false
-ABOUT.Visible = true
+ABOUT2.Visible = true
 end)
 
 NTab("COMMANDS                            >", function()
