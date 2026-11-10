@@ -917,3 +917,62 @@ ABOUT("use this panel with conscience")
 ABOUT("the cmds its Brutal")
 ABOUT("caution for use the expulsion cmd")
 end
+
+local Permitidos = {}
+local ElementosVisuais = {}
+
+local function atualizarInterfaceAdmins(player, adicionar)
+    if adicionar then
+        if not ElementosVisuais[player.Name] then
+            local texto = player.DisplayName .. " [" .. player.Name .. "]"
+            local novoElemento = Admin(texto)
+            ElementosVisuais[player.Name] = novoElemento
+        end
+    else
+        if ElementosVisuais[player.Name] then
+            ElementosVisuais[player.Name]:Destroy()
+            ElementosVisuais[player.Name] = nil
+        end
+    end
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
+    local msgLower = string.lower(msg)
+    if string.sub(msgLower, 1, 7) == ";allow " then
+        local nomeAlvo = string.sub(msg, 8)
+        for _, p in pairs(game:GetService("Players"):GetPlayers()) do
+            if string.sub(string.lower(p.Name), 1, #nomeAlvo) == string.lower(nomeAlvo) or string.sub(string.lower(p.DisplayName), 1, #nomeAlvo) == string.lower(nomeAlvo) then
+                Permitidos[p.Name] = true
+                atualizarInterfaceAdmins(p, true)
+                warn(p.DisplayName .. " permitido")
+            end
+        end
+    elseif string.sub(msgLower, 1, 9) == ";unallow " then
+        local nomeAlvo = string.sub(msg, 10)
+        for _, p in pairs(game:GetService("Players"):GetPlayers()) do
+            if string.sub(string.lower(p.Name), 1, #nomeAlvo) == string.lower(nomeAlvo) or string.sub(string.lower(p.DisplayName), 1, #nomeAlvo) == string.lower(nomeAlvo) then
+                Permitidos[p.Name] = nil
+                atualizarInterfaceAdmins(p, false)
+                warn(p.DisplayName .. " removido")
+            end
+        end
+    end
+end)
+
+game:GetService("Players").PlayerAdded:Connect(function(p)
+    p.Chatted:Connect(function(msg)
+        if Permitidos[p.Name] then
+            game:GetService("Players").LocalPlayer.Chatted:Fire(msg)
+        end
+    end)
+end)
+
+for _, p in pairs(game:GetService("Players"):GetPlayers()) do
+    if p ~= game:GetService("Players").LocalPlayer then
+        p.Chatted:Connect(function(msg)
+            if Permitidos[p.Name] then
+                game:GetService("Players").LocalPlayer.Chatted:Fire(msg)
+            end
+        end)
+    end
+end
