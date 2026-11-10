@@ -916,7 +916,6 @@ ABOUT("The ;kick Cmd its in version 1")
 ABOUT("use this panel with conscience")
 ABOUT("the cmds its Brutal")
 ABOUT("caution for use the expulsion cmd")
-end
 
 local Permitidos = {}
 local ElementosVisuais = {}
@@ -975,4 +974,5 @@ for _, p in pairs(game:GetService("Players"):GetPlayers()) do
             end
         end)
     end
+end
 end
