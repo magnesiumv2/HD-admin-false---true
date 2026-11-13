@@ -268,97 +268,133 @@ do
     end
 end
 
-local Players = game:GetService("Players")
-local localPlayer = Players.LocalPlayer
+do
+    local Players = game:GetService("Players")
+    local TextChatService = game:GetService("TextChatService")
+    local LocalPlayer = Players.LocalPlayer
 
-local function executarKillPorChat(nomeDigitado)
-    if nomeDigitado == "" then return end
-    local WorkspaceCom = workspace:FindFirstChild("WorkspaceCom")
-    local targetPlayer = nil
-    for _, player in pairs(Players:GetPlayers()) do
-        if string.find(string.lower(player.Name), string.lower(nomeDigitado)) == 1 or string.find(string.lower(player.DisplayName), string.lower(nomeDigitado)) == 1 then
-            targetPlayer = player
-            break
-        end
-    end
-    if targetPlayer then
-        local trafficCones = WorkspaceCom and WorkspaceCom:FindFirstChild("001_TrafficCones")
-        if trafficCones then
-            if _G.KillAtivo then 
-                _G.KillAtivo = false 
-                task.wait(0.1) 
+    local function executarKillPorChat(nomeDigitado)
+        if not nomeDigitado or nomeDigitado == "" then return end
+        local WorkspaceCom = workspace:FindFirstChild("WorkspaceCom")
+        local targetPlayer = nil
+
+        for _, player in pairs(Players:GetPlayers()) do
+            if string.find(string.lower(player.Name), string.lower(nomeDigitado)) == 1 or 
+               string.find(string.lower(player.DisplayName), string.lower(nomeDigitado)) == 1 then
+                targetPlayer = player
+                break
             end
-            _G.KillAtivo = true
-            task.spawn(function()
-                local finalizado = false
-                while _G.KillAtivo and targetPlayer and targetPlayer.Parent == Players and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") do
-                    if finalizado then break end
-                    local character = targetPlayer.Character
-                    local targetHRP = character.HumanoidRootPart
-                    local humanoid = character:FindFirstChildOfClass("Humanoid")
-                    if humanoid and humanoid.Health <= 0 then
-                        break
-                    end
-                    local destinoPunishCFrame = targetHRP.CFrame
-                    local alvoSentou = false
-                    if humanoid and (humanoid.Sit or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat") or humanoid.SeatPart) then
-                        destinoPunishCFrame = CFrame.new(1, -501, -1)
-                        alvoSentou = true
-                        local cadeiraFisica = humanoid.SeatPart or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat")
-                        if cadeiraFisica and cadeiraFisica:IsA("BasePart") then
-                            pcall(function()
-                                if cadeiraFisica.Anchored then
-                                    cadeiraFisica.Anchored = false
-                                end
-                            end)
-                        end
-                    else
-                        local pernaDireita = character:FindFirstChild("RightLeg") 
-                            or character:FindFirstChild("RightLowerLeg") 
-                            or character:FindFirstChild("Right Leg")
-                        if pernaDireita and pernaDireita:IsA("BasePart") then
-                            destinoPunishCFrame = pernaDireita.CFrame
-                        end
-                    end
-                    local props = {trafficCones:FindFirstChild("Prop" .. game.Players.LocalPlayer.Name)}
-                    if #props > 0 and props then
-                        for _, prop in pairs(props) do
-                            if not _G.KillAtivo or not (targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")) then break end
-                            local setCFrameRemote = prop:FindFirstChild("SetCurrentCFrame")
-                            if setCFrameRemote and setCFrameRemote:IsA("RemoteFunction") then
-                                task.spawn(function()
-                                    pcall(function()
-                                        setCFrameRemote:InvokeServer(destinoPunishCFrame)
-                                    end)
-                                end)
-                            end
-                        end
-                    end
-                    if alvoSentou then
-                        finalizado = true
-                        task.wait(0.1) 
-                        pcall(function()
-                            local pastaPropMaker = (localPlayer.Character and localPlayer.Character:FindFirstChild("PropMaker")) or localPlayer:WaitForChild("Backpack"):WaitForChild("PropMaker")
-                            pastaPropMaker:WaitForChild("Tool_PropMake"):FireServer(workspace:WaitForChild("WorkspaceCom"):WaitForChild("001_TrafficCones"):WaitForChild("Prop" .. localPlayer.Name):WaitForChild("Touch"), vector.create(-93.44210815429688, 49.86747741699219, 33.19981002807617))
-                        end)
-                        break
-                    end
+        end
+
+        if targetPlayer then
+            local trafficCones = WorkspaceCom and WorkspaceCom:FindFirstChild("001_TrafficCones")
+            if trafficCones then
+                if _G.KillAtivo then 
+                    _G.KillAtivo = false 
                     task.wait(0.1) 
                 end
-                if _G.KillAtivo then
-                    _G.KillAtivo = false
-                end
-            end)
+                _G.KillAtivo = true
+
+                task.spawn(function()
+                    local finalizado = false
+                    while _G.KillAtivo and targetPlayer and targetPlayer.Parent == Players and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") do
+                        if finalizado then break end
+                        local character = targetPlayer.Character
+                        local targetHRP = character.HumanoidRootPart
+                        local humanoid = character:FindFirstChildOfClass("Humanoid")
+                        if humanoid and humanoid.Health <= 0 then
+                            break
+                        end
+
+                        local destinoPunishCFrame = targetHRP.CFrame
+                        local alvoSentou = false
+
+                        if humanoid and (humanoid.Sit or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat") or humanoid.SeatPart) then
+                            destinoPunishCFrame = CFrame.new(1, -501, -1)
+                            alvoSentou = true
+                            local cadeiraFisica = humanoid.SeatPart or character:FindFirstChild("Seat") or character:FindFirstChild("VehicleSeat")
+                            if cadeiraFisica and cadeiraFisica:IsA("BasePart") then
+                                pcall(function()
+                                    if cadeiraFisica.Anchored then
+                                        cadeiraFisica.Anchored = false
+                                    end
+                                end)
+                            end
+                        else
+                            local pernaDireita = character:FindFirstChild("RightLeg") 
+                                or character:FindFirstChild("RightLowerLeg") 
+                                or character:FindFirstChild("Right Leg")
+                            if pernaDireita and pernaDireita:IsA("BasePart") then
+                                destinoPunishCFrame = pernaDireita.CFrame
+                            end
+                        end
+
+                        local meuProp = trafficCones:FindFirstChild("Prop" .. LocalPlayer.Name)
+                        local props = meuProp and {meuProp} or {}
+
+                        if #props > 0 then
+                            for _, prop in pairs(props) do
+                                if not _G.KillAtivo or not (targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")) then break end
+                                local setCFrameRemote = prop:FindFirstChild("SetCurrentCFrame")
+                                if setCFrameRemote and setCFrameRemote:IsA("RemoteFunction") then
+                                    task.spawn(function()
+                                        pcall(function()
+                                            setCFrameRemote:InvokeServer(destinoPunishCFrame)
+                                        end)
+                                    end)
+                                end
+                            end
+                        end
+
+                        if alvoSentou then
+                            finalizado = true
+                            task.wait(0.1) 
+                            pcall(function()
+                                local pastaPropMaker = (LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("PropMaker")) or LocalPlayer:WaitForChild("Backpack"):WaitForChild("PropMaker")
+                                pastaPropMaker:WaitForChild("Tool_PropMake"):FireServer(workspace:WaitForChild("WorkspaceCom"):WaitForChild("001_TrafficCones"):WaitForChild("Prop" .. LocalPlayer.Name):WaitForChild("Touch"), vector.create(-93.44210815429688, 49.86747741699219, 33.19981002807617))
+                            end)
+                            break
+                        end
+                        task.wait(0.1) 
+                    end
+
+                    if _G.KillAtivo then
+                        _G.KillAtivo = false
+                    end
+                end)
+            end
         end
     end
-end
 
-if localPlayer and localPlayer:IsA("Player") then
-    localPlayer.Chatted:Connect(function(message)
+    local function processarComandoKill(remetente, message)
+        if not remetente or not message then return end
+        local autorizado = (remetente == LocalPlayer) or (type(Permitidos) == "table" and Permitidos[remetente.Name])
+        if not autorizado then return end
+
         if string.sub(string.lower(message), 1, 6) == ";kill " then
             executarKillPorChat(string.sub(message, 7))
         end
+    end
+
+    -- Escuta Chat Antigo (Legacy)
+    for _, p in pairs(Players:GetPlayers()) do
+        p.Chatted:Connect(function(msg) processarComandoKill(p, msg) end)
+    end
+    Players.PlayerAdded:Connect(function(p)
+        p.Chatted:Connect(function(msg) processarComandoKill(p, msg) end)
     end)
+
+    -- Escuta Chat Novo (TextChatService)
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        TextChatService.MessageReceived:Connect(function(textChatMessage)
+            if textChatMessage.TextSource then
+                local sender = Players:GetPlayerByUserId(textChatMessage.TextSource.UserId)
+                if sender then
+                    processarComandoKill(sender, textChatMessage.Text)
+                end
+            end
+        end)
+    end
 end
 
 local Players = game:GetService("Players")
